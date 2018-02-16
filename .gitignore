@@ -3,6 +3,7 @@
 /db
 /deps
 /*.ez
+/src/calc_lexer.erl
 
 # Generated on crash by the VM
 erl_crash.dump
