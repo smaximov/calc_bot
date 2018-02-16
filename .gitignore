@@ -3,7 +3,10 @@
 /db
 /deps
 /*.ez
+
+# Ignore generated Erlang modules for parser and lexer
 /src/calc_lexer.erl
+/src/calc_parser.erl
 
 # Generated on crash by the VM
 erl_crash.dump
