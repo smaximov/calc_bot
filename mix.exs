@@ -43,7 +43,8 @@ defmodule CalcBot.Mixfile do
       {:ex_doc, "~> 0.18.3", only: [:dev], runtime: false},
       {:distillery, "~> 1.5.2"},
       {:libcluster, "~> 2.3.0", only: [:prod]},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:sobelow, "~> 0.6.8", only: [:dev], runtime: false}
     ]
   end
 

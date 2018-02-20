@@ -1,0 +1,10 @@
+[
+  verbose: false,
+  private: false,
+  skip: false,
+  router: "",
+  exit: "false",
+  format: "quiet",
+  ignore: ["Config.HTTPS"],
+  ignore_files: [""]
+]
