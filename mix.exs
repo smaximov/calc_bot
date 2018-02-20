@@ -40,7 +40,8 @@ defmodule CalcBot.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:ex_doc, "~> 0.18.3", only: [:dev], runtime: false},
-      {:distillery, "~> 1.5.2"}
+      {:distillery, "~> 1.5.2"},
+      {:libcluster, "~> 2.3.0", only: [:prod]}
     ]
   end
 

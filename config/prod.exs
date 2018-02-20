@@ -66,3 +66,14 @@ config :calc_bot, CalcBot.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: "${DATABASE_URL}",
   pool_size: 1
+
+config :libcluster,
+  topologies: [
+    k8s_example: [
+      strategy: Cluster.Strategy.Kubernetes,
+      config: [
+        kubernetes_selector: "${LIBCLUSTER_KUBERNETES_SELECTOR}",
+        kubernetes_node_basename: "${LIBCLUSTER_KUBERNETES_NODE_BASENAME}"
+      ]
+    ]
+  ]
