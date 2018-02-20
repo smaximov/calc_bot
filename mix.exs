@@ -10,7 +10,8 @@ defmodule CalcBot.Mixfile do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [plt_add_deps: :transitive]
     ]
   end
 
@@ -41,7 +42,8 @@ defmodule CalcBot.Mixfile do
       {:cowboy, "~> 1.0"},
       {:ex_doc, "~> 0.18.3", only: [:dev], runtime: false},
       {:distillery, "~> 1.5.2"},
-      {:libcluster, "~> 2.3.0", only: [:prod]}
+      {:libcluster, "~> 2.3.0", only: [:prod]},
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
     ]
   end
 
