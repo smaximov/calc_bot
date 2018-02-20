@@ -10,4 +10,9 @@ defmodule CalcBot.Calculator.LexerTest do
     assert Lexer.scan("1.2e12") == {:ok, [{:float, 1, 1.2e12}]}
     assert Lexer.scan("1.2E-12") == {:ok, [{:float, 1, 1.2e-12}]}
   end
+
+  test "scans parentheses" do
+    assert Lexer.scan("(") == {:ok, [{:"(", 1}]}
+    assert Lexer.scan(")") == {:ok, [{:")", 1}]}
+  end
 end
