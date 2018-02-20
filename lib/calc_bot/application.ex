@@ -12,12 +12,8 @@ defmodule CalcBot.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # Start the Ecto repository
-      supervisor(CalcBot.Repo, []),
-      # Start the endpoint when the application starts
-      supervisor(CalcBotWeb.Endpoint, [])
-      # Start your own worker by calling: CalcBot.Worker.start_link(arg1, arg2, arg3)
-      # worker(CalcBot.Worker, [arg1, arg2, arg3]),
+      CalcBot.Repo,
+      CalcBotWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
