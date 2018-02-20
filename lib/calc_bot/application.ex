@@ -1,4 +1,8 @@
 defmodule CalcBot.Application do
+  @moduledoc """
+  This module provides an entry point of the application.
+  """
+
   use Application
 
   # See https://hexdocs.pm/elixir/Application.html
