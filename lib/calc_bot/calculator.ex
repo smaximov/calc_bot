@@ -34,9 +34,7 @@ defmodule CalcBot.Calculator do
     end
   end
 
-  defguardp is_literal(node) when is_integer(node) or is_float(node)
-
-  defp visit_node(node) when is_literal(node), do: {:ok, node}
+  defp visit_node(node) when is_integer(node) or is_float(node), do: {:ok, node}
 
   defp visit_node({bin_op, left, right}) do
     with {:ok, left} <- visit_node(left),
