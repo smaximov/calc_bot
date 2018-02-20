@@ -26,9 +26,9 @@ defmodule CalcBotWeb.Endpoint do
 
   plug(
     Plug.Parsers,
-    parsers: [:urlencoded, :multipart, :json],
-    pass: ["*/*"],
-    json_decoder: Poison
+    parsers: [:json],
+    pass: ["application/json"],
+    json_decoder: Jason
   )
 
   plug(Plug.MethodOverride)

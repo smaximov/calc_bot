@@ -20,6 +20,12 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :ecto, json_library: Jason
+
+config :calc_bot, CalcBot.Repo, types: CalcBot.PostgresTypes
+
+config :phoenix, :format_encoders, json_encoders: Jason
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
