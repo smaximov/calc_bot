@@ -46,7 +46,8 @@ defmodule CalcBot.Mixfile do
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:sobelow, "~> 0.6.8", only: [:dev], runtime: false},
       {:credo, "~> 0.9.0-rc6", only: [:dev, :test], runtime: false},
-      {:jason, "~> 1.0.0"}
+      {:jason, "~> 1.0.0"},
+      {:absinthe_plug, "~> 1.4.2"}
     ]
   end
 

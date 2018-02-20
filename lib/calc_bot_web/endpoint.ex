@@ -27,7 +27,6 @@ defmodule CalcBotWeb.Endpoint do
   plug(
     Plug.Parsers,
     parsers: [:json],
-    pass: ["application/json"],
     json_decoder: Jason
   )
 
