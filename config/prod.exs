@@ -58,7 +58,11 @@ config :logger, level: :info
 #
 #     config :calc_bot, CalcBotWeb.Endpoint, server: true
 #
+config :calc_bot, CalcBotWeb.Endpoint,
+  server: true,
+  secret_key_base: "${SECRET_KEY_BASE}"
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+config :calc_bot, CalcBot.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: "${DATABASE_URL}",
+  pool_size: 1
