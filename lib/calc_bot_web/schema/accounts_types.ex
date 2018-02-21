@@ -8,16 +8,16 @@ defmodule CalcBotWeb.Schema.AccountsTypes do
   object :accounts_queries do
     @desc "Get all bots"
     field :bots, non_null(list_of(:bot)) do
-      resolve(&Resolvers.Accounts.list_bots/3)
+      resolve &Resolvers.Accounts.list_bots/3
     end
   end
 
   @desc "Telegram Bot info"
   object :bot do
     @desc "Telegram Bot token"
-    field(:token, non_null(:string))
+    field :token, non_null(:string)
 
     @desc "Telegram Bot username"
-    field(:username, non_null(:string))
+    field :username, non_null(:string)
   end
 end

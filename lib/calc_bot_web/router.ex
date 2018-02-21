@@ -9,24 +9,18 @@ defmodule CalcBotWeb.Router do
 
   # Enable GraphiQL playground in development
   if Mix.env() == :dev do
-    forward(
-      "/graphiql",
-      Absinthe.Plug.GraphiQL,
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: CalcBotWeb.Schema,
       json_codec: Jason,
       default_url: {__MODULE__, :graphql_default_url},
       interface: :playground
-    )
   end
 
   scope "/api" do
-    forward(
-      "/",
-      Absinthe.Plug,
+    forward "/", Absinthe.Plug,
       schema: CalcBotWeb.Schema,
       json_codec: Jason,
       pipeline: {ApolloTracing.Pipeline, :plug}
-    )
   end
 
   def graphql_default_url, do: CalcBotWeb.Endpoint.url() <> "/api"
