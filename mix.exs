@@ -40,15 +40,24 @@ defmodule CalcBot.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:ex_doc, "~> 0.18.3", only: [:dev], runtime: false},
       {:distillery, "~> 1.5.2"},
-      {:libcluster, "~> 2.3.0", only: [:prod]},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
-      {:sobelow, "~> 0.6.8", only: [:dev], runtime: false},
-      {:credo, "~> 0.9.0-rc6", only: [:dev, :test], runtime: false},
+      {:libcluster, "~> 2.3.0"},
       {:jason, "~> 1.0.0"},
+
+      # GraphQL
       {:absinthe_plug, "~> 1.4.2"},
-      {:apollo_tracing, "~> 0.4.1"}
+      {:apollo_tracing, "~> 0.4.1"},
+
+      # Passwords
+      {:comeonin, "~> 4.1.0"},
+      {:argon2_elixir, "~> 1.2.14"},
+      {:not_qwerty123, "~> 2.3.0"},
+
+      # Dev and test dependencies
+      {:ex_doc, "~> 0.18.3", only: [:dev], runtime: false},
+      {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.6.8", only: [:dev, :test], runtime: false},
+      {:credo, "~> 0.9.0-rc6", only: [:dev, :test], runtime: false}
     ]
   end
 
