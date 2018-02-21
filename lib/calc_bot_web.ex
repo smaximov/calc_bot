@@ -20,9 +20,11 @@ defmodule CalcBotWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: CalcBotWeb
+
       import Plug.Conn
-      import CalcBotWeb.Router.Helpers
       import CalcBotWeb.Gettext
+
+      alias CalcBotWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -34,10 +36,10 @@ defmodule CalcBotWeb do
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
-
-      import CalcBotWeb.Router.Helpers
       import CalcBotWeb.ErrorHelpers
       import CalcBotWeb.Gettext
+
+      alias CalcBotWeb.Router.Helpers, as: Routes
     end
   end
 
