@@ -47,7 +47,8 @@ defmodule CalcBot.Mixfile do
       {:sobelow, "~> 0.6.8", only: [:dev], runtime: false},
       {:credo, "~> 0.9.0-rc6", only: [:dev, :test], runtime: false},
       {:jason, "~> 1.0.0"},
-      {:absinthe_plug, "~> 1.4.2"}
+      {:absinthe_plug, "~> 1.4.2"},
+      {:apollo_tracing, "~> 0.4.1"}
     ]
   end
 

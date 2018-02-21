@@ -20,7 +20,13 @@ defmodule CalcBotWeb.Router do
   end
 
   scope "/api" do
-    forward("/", Absinthe.Plug, schema: CalcBotWeb.Schema, json_codec: Jason)
+    forward(
+      "/",
+      Absinthe.Plug,
+      schema: CalcBotWeb.Schema,
+      json_codec: Jason,
+      pipeline: {ApolloTracing.Pipeline, :plug}
+    )
   end
 
   def graphql_default_url, do: CalcBotWeb.Endpoint.url() <> "/api"
