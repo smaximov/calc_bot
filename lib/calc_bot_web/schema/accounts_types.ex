@@ -1,14 +1,14 @@
-defmodule CalcBotWeb.Schema.AccountTypes do
+defmodule CalcBotWeb.Schema.AccountsTypes do
   @moduledoc false
 
   use Absinthe.Schema.Notation
 
   alias CalcBotWeb.Resolvers
 
-  object :account_queries do
+  object :accounts_queries do
     @desc "Get all bots"
     field :bots, non_null(list_of(:bot)) do
-      resolve(&Resolvers.Account.list_bots/3)
+      resolve(&Resolvers.Accounts.list_bots/3)
     end
   end
 

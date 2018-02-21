@@ -1,6 +1,6 @@
-defmodule CalcBotWeb.Resolvers.Account do
+defmodule CalcBotWeb.Resolvers.Accounts do
   @moduledoc """
-  Account resolvers.
+  Accounts resolvers.
   """
 
   def list_bots(_parent, _args, _resolution) do
