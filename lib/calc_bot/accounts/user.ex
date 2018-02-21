@@ -44,6 +44,7 @@ defmodule CalcBot.Accounts.User do
   end
 
   @password_length 8
+  @message "is too weak"
 
   @spec validate_password(changeset :: Ecto.Changeset.t(), opts :: Keyword.t()) ::
           Ecto.Changeset.t()
@@ -52,8 +53,8 @@ defmodule CalcBot.Accounts.User do
 
     validate_change(changeset, :password, fn :password, password ->
       case PasswordStrength.strong_password?(password, min_length: @password_length) do
-        {:error, message} ->
-          [{:password, {Keyword.get(opts, :message, message), [validation: :password]}}]
+        {:error, _} ->
+          [{:password, {Keyword.get(opts, :message, @message), [validation: :password]}}]
 
         _ ->
           []

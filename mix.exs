@@ -55,6 +55,7 @@ defmodule CalcBot.Mixfile do
 
       # Dev and test dependencies
       {:ex_doc, "~> 0.18.3", only: [:dev], runtime: false},
+      {:ex_machina, "~> 2.1.0", only: :test},
       {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.6.8", only: [:dev, :test], runtime: false},
       {:credo, "~> 0.9.0-rc6", only: [:dev, :test], runtime: false}

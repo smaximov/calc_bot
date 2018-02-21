@@ -17,11 +17,13 @@ defmodule CalcBot.DataCase do
   using do
     quote do
       alias CalcBot.Repo
+      alias Ecto.Changeset
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
       import CalcBot.DataCase
+      import CalcBot.Factory
     end
   end
 
