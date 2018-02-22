@@ -30,4 +30,13 @@ defmodule CalcBot.Password do
   end
 
   def put_password_hash(changeset), do: changeset
+
+  @doc """
+  Check `password` by comparing its hash with the `:password_hash` found in `user`
+  """
+  @spec check_password(Ecto.Schema.t(), String.t()) ::
+          {:ok, Ecto.Schema.t()} | {:error, String.t()}
+  def check_password(user, password) do
+    Comeonin.Argon2.check_pass(user, password, hide_user: true, hash_key: :password_hash)
+  end
 end

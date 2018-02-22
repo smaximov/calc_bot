@@ -6,7 +6,6 @@ defmodule CalcBot.Accounts.User do
   use Ecto.Schema
 
   import Ecto.Changeset
-  import CalcBot.Password
 
   alias CalcBot.Accounts.User
 
@@ -36,11 +35,13 @@ defmodule CalcBot.Accounts.User do
   """
   @spec changeset(user :: t, attrs :: map) :: Ecto.Changeset.t()
   def changeset(%User{} = user, attrs) do
+    alias CalcBot.Password
+
     user
     |> cast(attrs, [:username, :fullname, :email, :password])
     |> validate_required([:username, :fullname, :email, :password])
-    |> validate_password()
-    |> put_password_hash()
+    |> Password.validate_password()
+    |> Password.put_password_hash()
     |> unique_constraint(:email)
     |> unique_constraint(:username)
     |> check_constraint(:email, name: "basic_email_format_check")

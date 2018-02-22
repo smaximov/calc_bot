@@ -63,5 +63,21 @@ defmodule CalcBot.AccountsTest do
       assert {:error, %Changeset{} = changeset} = result
       assert "is too weak" in errors_on(changeset).password
     end
+
+    test "authenticate_user/2 with not existing user returns an error" do
+      assert {:error, _} = Accounts.authenticate_user("no@such.email", "password")
+    end
+
+    test "authenticate_user/2 with invalid password returns an error" do
+      {:ok, user} = params_for(:user, password: "sTr0nGP4sSw0rD") |> Accounts.create_user()
+      assert {:error, _} = Accounts.authenticate_user(user.email, "password")
+    end
+
+    test "authenticate_user/2 with valid password returns the user" do
+      password = "sTr0nGP4sSw0rD"
+
+      {:ok, user} = params_for(:user, password: password) |> Accounts.create_user()
+      assert {:ok, ^user} = Accounts.authenticate_user(user.email, password)
+    end
   end
 end
