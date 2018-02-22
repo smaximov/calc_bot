@@ -4,7 +4,10 @@ defmodule CalcBot.Accounts.User do
   """
 
   use Ecto.Schema
+
   import Ecto.Changeset
+  import CalcBot.Password
+
   alias CalcBot.Accounts.User
 
   @type t :: %__MODULE__{
@@ -42,32 +45,4 @@ defmodule CalcBot.Accounts.User do
     |> unique_constraint(:username)
     |> check_constraint(:email, name: "basic_email_format_check")
   end
-
-  @password_length 8
-  @message "is too weak"
-
-  @spec validate_password(changeset :: Ecto.Changeset.t(), opts :: Keyword.t()) ::
-          Ecto.Changeset.t()
-  defp validate_password(changeset, opts \\ []) do
-    alias NotQwerty123.PasswordStrength
-
-    validate_change(changeset, :password, fn :password, password ->
-      case PasswordStrength.strong_password?(password, min_length: @password_length) do
-        {:error, _} ->
-          [{:password, {Keyword.get(opts, :message, @message), [validation: :password]}}]
-
-        _ ->
-          []
-      end
-    end)
-  end
-
-  @spec put_password_hash(changeset :: Ecto.Changeset.t()) :: Ecto.Changeset.t()
-  defp put_password_hash(
-         %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
-       ) do
-    change(changeset, Comeonin.Argon2.add_hash(password))
-  end
-
-  defp put_password_hash(changeset), do: changeset
 end
