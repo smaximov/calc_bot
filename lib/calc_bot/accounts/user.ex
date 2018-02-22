@@ -34,7 +34,7 @@ defmodule CalcBot.Accounts.User do
   @doc """
   Returns a changeset suitable for creating a new user.
   """
-  @spec changeset(user :: __MODULE__.t(), attrs :: map) :: Ecto.Changeset.t()
+  @spec changeset(user :: t, attrs :: map) :: Ecto.Changeset.t()
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:username, :fullname, :email, :password])
