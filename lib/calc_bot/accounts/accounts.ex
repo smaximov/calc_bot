@@ -4,6 +4,7 @@ defmodule CalcBot.Accounts do
   """
 
   import Ecto.Query, warn: false
+  import CalcBotWeb.Gettext
 
   alias CalcBot.Repo
   alias CalcBot.Accounts.User
@@ -59,7 +60,6 @@ defmodule CalcBot.Accounts do
     |> Repo.insert()
   end
 
-  @dialyzer {:no_match, authenticate_user: 2}
   @doc """
   Authenticates a user by email/password.
 
@@ -82,8 +82,12 @@ defmodule CalcBot.Accounts do
       |> Password.check_password(password)
 
     case result do
-      {:ok, user} -> {:ok, user}
-      {:error, _} -> {:error, "Specified email/password combination is invalid"}
+      {:ok, user} ->
+        {:ok, user}
+
+      {:error, _} ->
+        message = dgettext("errors", "Specified email/password combination is invalid")
+        {:error, message}
     end
   end
 end

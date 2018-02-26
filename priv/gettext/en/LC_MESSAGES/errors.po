@@ -95,3 +95,13 @@ msgstr ""
 
 msgid "must be equal to %{number}"
 msgstr ""
+
+#, elixir-format
+#: lib/calc_bot/password.ex:15
+msgid "is too weak"
+msgstr ""
+
+#, elixir-format
+#: lib/calc_bot/accounts/accounts.ex:88
+msgid "Specified email/password combination is invalid"
+msgstr ""

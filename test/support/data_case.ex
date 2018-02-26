@@ -24,6 +24,7 @@ defmodule CalcBot.DataCase do
       import Ecto.Query
       import CalcBot.DataCase
       import CalcBot.Factory
+      import CalcBotWeb.Gettext
     end
   end
 

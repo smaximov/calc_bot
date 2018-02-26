@@ -3,14 +3,19 @@ defmodule CalcBot.Password do
 
   alias Ecto.Changeset
   import Ecto.Changeset
+  import CalcBotWeb.Gettext
 
   @doc "Validate password in changeset."
-  @spec validate_password(changeset :: Changeset.t(), opts :: Keyword.t()) :: Changeset.t()
+  @spec validate_password(Changeset.t(), Keyword.t()) :: Changeset.t()
   def validate_password(changeset, opts \\ []) do
     alias NotQwerty123.PasswordStrength
 
     min_length = Keyword.get(opts, :min_length, 8)
-    message = Keyword.get(opts, :message, "is too weak")
+
+    message =
+      Keyword.get_lazy(opts, :message, fn ->
+        dgettext("errors", "is too weak")
+      end)
 
     validate_change(changeset, :password, fn :password, password ->
       case PasswordStrength.strong_password?(password, min_length: min_length) do
@@ -36,6 +41,7 @@ defmodule CalcBot.Password do
   """
   @spec check_password(Ecto.Schema.t(), String.t()) ::
           {:ok, Ecto.Schema.t()} | {:error, String.t()}
+  @dialyzer {:no_match, check_password: 2}
   def check_password(user, password) do
     Comeonin.Argon2.check_pass(user, password, hide_user: true, hash_key: :password_hash)
   end

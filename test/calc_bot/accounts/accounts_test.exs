@@ -37,31 +37,31 @@ defmodule CalcBot.AccountsTest do
 
       assert {:error, %Changeset{} = changeset} = Accounts.create_user(user)
 
-      assert "can't be blank" in errors_on(changeset).username
-      assert "can't be blank" in errors_on(changeset).fullname
-      assert "can't be blank" in errors_on(changeset).email
-      assert "can't be blank" in errors_on(changeset).password
+      assert dgettext("errors", "can't be blank") in errors_on(changeset).username
+      assert dgettext("errors", "can't be blank") in errors_on(changeset).fullname
+      assert dgettext("errors", "can't be blank") in errors_on(changeset).email
+      assert dgettext("errors", "can't be blank") in errors_on(changeset).password
     end
 
     test "create_user/1 with invalid email returns error changeset" do
       result = params_for(:user, email: "invalid@email") |> Accounts.create_user()
 
       assert {:error, %Changeset{} = changeset} = result
-      assert "is invalid" in errors_on(changeset).email
+      assert dgettext("errors", "is invalid") in errors_on(changeset).email
     end
 
     test "create_user/1 with short password returns error changeset" do
       result = params_for(:user, password: "short") |> Accounts.create_user()
 
       assert {:error, %Changeset{} = changeset} = result
-      assert "is too weak" in errors_on(changeset).password
+      assert dgettext("errors", "is too weak") in errors_on(changeset).password
     end
 
     test "create_user/1 with common password returns error changeset" do
       result = params_for(:user, password: "qwerty123") |> Accounts.create_user()
 
       assert {:error, %Changeset{} = changeset} = result
-      assert "is too weak" in errors_on(changeset).password
+      assert dgettext("errors", "is too weak") in errors_on(changeset).password
     end
 
     test "authenticate_user/2 with not existing user returns an error" do
