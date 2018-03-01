@@ -7,8 +7,6 @@ defmodule CalcBot.Accounts.User do
 
   import Ecto.Changeset
 
-  alias CalcBot.Accounts.User
-
   @type t :: %__MODULE__{
           id: integer | nil,
           username: String.t() | nil,
@@ -34,7 +32,7 @@ defmodule CalcBot.Accounts.User do
   Returns a changeset suitable for creating a new user.
   """
   @spec changeset(user :: t, attrs :: map) :: Ecto.Changeset.t()
-  def changeset(%User{} = user, attrs) do
+  def changeset(%__MODULE__{} = user, attrs) do
     alias CalcBot.Password
 
     user
