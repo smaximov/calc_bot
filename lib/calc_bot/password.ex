@@ -41,7 +41,6 @@ defmodule CalcBot.Password do
   """
   @spec check_password(Ecto.Schema.t(), String.t()) ::
           {:ok, Ecto.Schema.t()} | {:error, String.t()}
-  @dialyzer {:no_match, check_password: 2}
   def check_password(user, password) do
     Comeonin.Argon2.check_pass(user, password, hide_user: true, hash_key: :password_hash)
   end

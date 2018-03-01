@@ -75,6 +75,7 @@ defmodule CalcBot.Accounts do
       {:ok, %User{}}
   """
   @spec authenticate_user(String.t(), String.t()) :: {:ok, User.t()} | {:error, String.t()}
+  @dialyzer {:no_match, authenticate_user: 2}
   def authenticate_user(email, password) do
     result =
       User
