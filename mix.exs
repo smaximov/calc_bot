@@ -43,6 +43,7 @@ defmodule CalcBot.Mixfile do
       {:distillery, "~> 1.5.2"},
       {:libcluster, "~> 2.3.0"},
       {:jason, "~> 1.0.0"},
+      {:hashids, "~> 2.0.4"},
 
       # GraphQL
       {:absinthe_plug, "~> 1.4.2"},

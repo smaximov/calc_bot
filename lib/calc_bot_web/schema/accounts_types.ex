@@ -7,6 +7,7 @@ defmodule CalcBotWeb.Schema.AccountsTypes do
   alias CalcBotWeb.Resolvers
 
   object :user do
+    field :id, non_null(:opaque_id)
     field :username, non_null(:string)
     field :fullname, non_null(:string)
     field :email, non_null(:string)
