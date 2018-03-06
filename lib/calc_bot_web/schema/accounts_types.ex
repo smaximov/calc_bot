@@ -34,7 +34,7 @@ defmodule CalcBotWeb.Schema.AccountsTypes do
 
   object :accounts_mutations do
     @desc "Create new user"
-    field :sign_in, non_null(:user_payload) do
+    field :sign_up, non_null(:user_payload) do
       arg :username, non_null(:string)
       arg :fullname, non_null(:string)
       arg :email, non_null(:string)
