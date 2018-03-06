@@ -8,7 +8,7 @@ defmodule CalcBot.Absinthe.Payload do
   @type t :: %__MODULE__{
           success: boolean,
           result: result | nil,
-          errors: [Error] | nil
+          errors: [Error.t()] | nil
         }
 
   @type result :: Ecto.Schema.t()
@@ -45,7 +45,7 @@ defmodule CalcBot.Absinthe.Payload do
   @doc "Build payload struct"
   @spec build({:ok, result} | {:error, Error.error()}) :: t
   def build({:ok, result}), do: success(result)
-  def build({:error, error}), do: failure(error)
+  def build({:error, errors}), do: failure(errors)
 
   @doc "Build payload for a successful mutation"
   @spec success(result) :: t
@@ -54,8 +54,12 @@ defmodule CalcBot.Absinthe.Payload do
   end
 
   @doc "Build payload for a failed mutation"
-  @spec failure(Error.error()) :: t
-  def failure(error) do
-    %__MODULE__{success: false, errors: Error.build(error)}
+  @spec failure(Error.error() | [Error.error()]) :: t
+  def failure(errors) when is_list(errors) do
+    %__MODULE__{success: false, errors: Enum.flat_map(errors, &Error.build/1)}
+  end
+
+  def failure(errors) do
+    %__MODULE__{success: false, errors: Error.build(errors)}
   end
 end
