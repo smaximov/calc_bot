@@ -48,6 +48,10 @@ jobs:
           key: v1-mix-cache
           paths: "deps"
 
+      - run:
+          name: Build Dialyzer PTL
+          command: mix dialyzer --plt
+
       # save build cache
       - save_cache:
           key: v1-build-cache-{{ .Branch }}
@@ -55,6 +59,10 @@ jobs:
       - save_cache:
           key: v1-build-cache
           paths: "_build"
+
+      - run:
+          name: Check if code is formatted
+          command: mix format --check-formatted
 
       - run:
           name: Wait for Postgres
@@ -74,3 +82,15 @@ jobs:
 
       - store_test_results:
           path: _build/test/lib/calc_bot
+
+      - run:
+          name: Run linter
+          command: mix credo --strict
+
+      - run:
+          name: Run security analysis
+          command: mix sobelow --config --exit
+
+      - run:
+          name: Run static analyzer
+          command: mix dialyzer --halt-exit-status
