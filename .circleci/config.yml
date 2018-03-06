@@ -73,4 +73,4 @@ jobs:
           command: mix test
 
       - store_test_results:
-          path: _build/test/junit
+          path: _build/test/lib/calc_bot

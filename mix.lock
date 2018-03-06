@@ -21,6 +21,7 @@
   "gettext": {:hex, :gettext, "0.14.1", "a666b6782fdb6ccb4736170ccb0928c0f773aa0e47c694d4b7d0338f724ff189", [], [], "hexpm"},
   "hashids": {:hex, :hashids, "2.0.4", "ea47a2c2018b7ffb4f5ac9b0f8ea0af6d6159b9e190c5ed09f0ea83276968e0f", [], [], "hexpm"},
   "jason": {:hex, :jason, "1.0.0", "0f7cfa9bdb23fed721ec05419bcee2b2c21a77e926bce0deda029b5adc716fe2", [], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm"},
+  "junit_formatter": {:hex, :junit_formatter, "2.2.0", "da6093f0740c58a824f9585ebb7cb1b960efaecf48d1fa969e95d9c47c6b19dd", [], [], "hexpm"},
   "libcluster": {:hex, :libcluster, "2.3.0", "d2fb8e8b2054a4a0c7faf7ced7c41dd13f7b49cce689590d37ecf30098e1b344", [], [{:poison, "~> 3.0", [hex: :poison, repo: "hexpm", optional: false]}], "hexpm"},
   "mime": {:hex, :mime, "1.2.0", "78adaa84832b3680de06f88f0997e3ead3b451a440d183d688085be2d709b534", [], [], "hexpm"},
   "not_qwerty123": {:hex, :not_qwerty123, "2.3.0", "5ca66ba95ae17378efb9bdfd3adf8b7acd658310cff07feb6e00e9f420fd9088", [], [{:gettext, "~> 0.14", [hex: :gettext, repo: "hexpm", optional: false]}], "hexpm"},
