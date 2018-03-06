@@ -1,0 +1,76 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/elixir:1.6.1-node
+        environment:
+          MIX_ENV: test
+
+      - image: circleci/postgres:9.6.3-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: circleci-test
+          POSTGRES_PASSWORD:
+
+    working_directory: ~/app
+
+    steps:
+      - checkout
+
+      # install Hex locally (without prompt)
+      - run: mix local.hex --force
+
+      # fetch a copy of rebar (without prompt)
+      - run: mix local.rebar --force
+
+      - restore_cache:          # restore saved mix cache
+          keys:
+            - v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+            - v1-mix-cache-{{ .Branch }}
+            - v1-mix-cache
+
+      - restore_cache:          # restore saved build cache
+          keys:
+            - v1-build-cache-{{ .Branch }}
+            - v1-build-cache
+
+      - run: mix do deps.get, compile
+
+      # save dependencies cache
+      - save_cache:
+          key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+          paths: "deps"
+      - save_cache:
+          key: v1-mix-cache-{{ .Branch }}
+          paths: "deps"
+      - save_cache:
+          key: v1-mix-cache
+          paths: "deps"
+
+      # save build cache
+      - save_cache:
+          key: v1-build-cache-{{ .Branch }}
+          paths: "_build"
+      - save_cache:
+          key: v1-build-cache
+          paths: "_build"
+
+      - run:
+          name: Wait for Postgres
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Copy config files
+          command: cp .circleci/config/test.exs config/test.exs
+
+      - run:
+          name: Setup database
+          command: mix do ecto.create, ecto.migrate
+
+      - run:
+          name: Run tests
+          command: mix test
+
+      - store_test_results:
+          path: _build/test/junit
