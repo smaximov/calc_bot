@@ -48,10 +48,6 @@ jobs:
           key: v1-mix-cache
           paths: "deps"
 
-      - run:
-          name: Build Dialyzer PTL
-          command: mix dialyzer --plt
-
       # save build cache
       - save_cache:
           key: v1-build-cache-{{ .Branch }}
@@ -90,9 +86,3 @@ jobs:
       - run:
           name: Run security analysis
           command: mix sobelow --config --exit
-
-      - run:
-          name: Run static analyzer
-          command: mix dialyzer --halt-exit-status
-          environment:
-            - MIX_ENV: dev
