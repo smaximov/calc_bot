@@ -94,3 +94,5 @@ jobs:
       - run:
           name: Run static analyzer
           command: mix dialyzer --halt-exit-status
+          environment:
+            - MIX_ENV: dev
